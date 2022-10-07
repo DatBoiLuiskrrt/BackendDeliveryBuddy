@@ -1,0 +1,28 @@
+{
+  "name": "BackendDeliveryBuddy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DatBoiLuiskrrt/BackendDeliveryBuddy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DatBoiLuiskrrt/BackendDeliveryBuddy/issues"
+  },
+  "homepage": "https://github.com/DatBoiLuiskrrt/BackendDeliveryBuddy#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "knex": "^2.3.0",
+    "sqlite3": "^5.1.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}
