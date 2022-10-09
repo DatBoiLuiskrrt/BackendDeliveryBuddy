@@ -3,6 +3,7 @@ const router = express.Router();
 
 router.get("/", (req, res, next) => {
   // Return an array with all the users
+  res.status(200).json({ api: "up" });
 });
 
 router.get("/:id", (req, res, next) => {
