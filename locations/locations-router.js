@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const db = require("../data/db-config");
 
 router.get("/", (req, res, next) => {
   // Return an array with all the users
