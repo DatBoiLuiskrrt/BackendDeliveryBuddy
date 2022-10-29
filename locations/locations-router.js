@@ -1,10 +1,11 @@
 const express = require("express");
+const { default: knex } = require("knex");
 const router = express.Router();
 const db = require("../data/db-config");
 
 router.get("/", (req, res, next) => {
   // Return an array with all the users
-  res.status(200).json({ api: "up" });
+  knex("locations");
 });
 
 router.get("/:id", (req, res, next) => {
@@ -13,6 +14,20 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.post("/", (req, res, next) => {
+  const locationData = req.body;
+  db("locations")
+    .insert(locationData)
+    .then((ids) => {
+      db("locations")
+        .where({ id: ids[0] })
+        .then((newLocationEntry) => {
+          res.status(201).json(newLocationEntry);
+        });
+    })
+    .catch((err) => {
+      console.log("POST error, err");
+      res.status(500).json({ message: "Failed to post data" });
+    });
   // Return the newly created location object
   // this needs a middleware to check that the request body is valid
 });

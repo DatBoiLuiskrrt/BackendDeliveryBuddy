@@ -5,7 +5,7 @@
 exports.up = function (knex) {
   return knex.schema.createTable("locations", (tbl) => {
     //creates an id column, auto inc integers
-    tbl.increments("locations_id");
+    tbl.increments();
     //chainnig constraints
     //notnullable = required
     tbl.float("comments", 256).notNullable();
