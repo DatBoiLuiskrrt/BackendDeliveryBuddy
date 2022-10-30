@@ -8,6 +8,7 @@ exports.up = function (knex) {
     tbl.increments();
     //chainnig constraints
     //notnullable = required
+    //same columns in all inserts
     tbl.float("comments", 256).notNullable();
     tbl.text("address", 256).notNullable();
     //if not provided set to false by default
