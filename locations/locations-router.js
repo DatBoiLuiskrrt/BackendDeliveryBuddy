@@ -3,19 +3,15 @@ const express = require("express");
 const { default: knex } = require("knex");
 const router = express.Router();
 const db = require("../data/db-config");
+const Location = require("./locations-model");
 
 router.get("/", (req, res, next) => {
   // Return an array with all the users
-  db("locations")
+  Location.get()
     .then((locations) => {
       res.json(locations);
     })
-    .catch((err) => {
-      res.status(500) >
-        json({
-          message: "Failed to get all locations",
-        });
-    });
+    .catch(next);
 });
 
 router.get("/:id", (req, res, next) => {
