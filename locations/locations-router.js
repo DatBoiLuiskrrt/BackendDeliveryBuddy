@@ -4,7 +4,7 @@ const { default: knex } = require("knex");
 const router = express.Router();
 const db = require("../data/db-config");
 const Location = require("./locations-model");
-
+const { validateLocationId } = require("../api/middleware/middleware");
 router.get("/", (req, res, next) => {
   // Return an array with all the users
   Location.get()
@@ -14,13 +14,14 @@ router.get("/", (req, res, next) => {
     .catch(next);
 });
 
-router.get("/:id", (req, res, next) => {
+router.get("/:id", validateLocationId, (req, res, next) => {
   // Return the location object
-  Location.getById(req.params.id)
-    .then((locationById) => {
-      res.json(locationById);
-    })
-    .catch(next);
+  // Location.getById(req.params.id)
+  //   .then((locationById) => {
+  //     res.json(locationById);
+  //   })
+  // .catch(next);
+  res.json(req.location);
   // this needs a middleware to verify user id
 });
 
