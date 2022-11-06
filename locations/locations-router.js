@@ -16,6 +16,11 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   // Return the location object
+  Location.getById(req.params.id)
+    .then((locationById) => {
+      res.json(locationById);
+    })
+    .catch(next);
   // this needs a middleware to verify user id
 });
 
