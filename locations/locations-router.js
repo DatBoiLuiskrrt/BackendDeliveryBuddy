@@ -30,19 +30,24 @@ router.get("/:id", validateLocationId, (req, res, next) => {
 
 router.post("/", validateLocation, (req, res, next) => {
   const locationData = req.body;
-  db("locations")
-    .insert(locationData)
-    .then((ids) => {
-      db("locations")
-        .where({ id: ids[0] })
-        .then((newLocationEntry) => {
-          res.status(201).json(newLocationEntry);
-        });
+  Location.insert(locationData)
+    .then((newLocation) => {
+      res.status(201).json(newLocation);
     })
-    .catch((err) => {
-      console.log("POST error, err");
-      res.status(500).json({ message: "Failed to post data" });
-    });
+    .catch(next);
+  // db("locations")
+  //   .insert(locationData)
+  //   .then((ids) => {
+  //     db("locations")
+  //       .where({ id: ids[0] })
+  //       .then((newLocationEntry) => {
+  //         res.status(201).json(newLocationEntry);
+  //       });
+  //   })
+  //   .catch((err) => {
+  //     console.log("POST error, err");
+  //     res.status(500).json({ message: "Failed to post data" });
+  //   });
   // Return the newly created location object
   // this needs a middleware to check that the request body is valid
 });

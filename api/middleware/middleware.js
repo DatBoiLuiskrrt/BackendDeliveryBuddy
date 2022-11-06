@@ -21,16 +21,18 @@ async function validateLocationId(req, res, next) {
 }
 
 function validateLocation(req, res, next) {
-  const { comments, address } = req.body;
+  const { comments, address, dangerous } = req.body;
   if (!comments || !address) {
     res.status(400).json({
       message: "Missing required field for post to work",
     });
   } else {
     req.comments = comments.trim();
+    req.address = address;
+    req.dangerous = dangerous;
     next();
   }
-  console.log("Validate post middleware");
+  //   console.log("Validate post middleware");
 }
 
 module.exports = {
