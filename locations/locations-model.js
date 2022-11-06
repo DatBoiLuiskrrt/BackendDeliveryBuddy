@@ -3,6 +3,7 @@ const db = require("../data/db-config");
 module.exports = {
   get,
   getById,
+  insert,
 };
 
 function get() {
@@ -11,4 +12,12 @@ function get() {
 
 function getById(id) {
   return db("locations").where({ id }).first();
+}
+
+function insert(location) {
+  return db("locations")
+    .insert(location)
+    .then((locations) => {
+      return getById(locations[0]);
+    });
 }

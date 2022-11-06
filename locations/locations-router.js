@@ -4,7 +4,10 @@ const { default: knex } = require("knex");
 const router = express.Router();
 const db = require("../data/db-config");
 const Location = require("./locations-model");
-const { validateLocationId } = require("../api/middleware/middleware");
+const {
+  validateLocationId,
+  validateLocation,
+} = require("../api/middleware/middleware");
 router.get("/", (req, res, next) => {
   // Return an array with all the users
   Location.get()
@@ -25,7 +28,7 @@ router.get("/:id", validateLocationId, (req, res, next) => {
   // this needs a middleware to verify user id
 });
 
-router.post("/", (req, res, next) => {
+router.post("/", validateLocation, (req, res, next) => {
   const locationData = req.body;
   db("locations")
     .insert(locationData)
