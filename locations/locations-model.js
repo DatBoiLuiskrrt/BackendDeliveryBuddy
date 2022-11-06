@@ -4,6 +4,7 @@ module.exports = {
   get,
   getById,
   insert,
+  update,
 };
 
 function get() {
@@ -19,5 +20,14 @@ function insert(location) {
     .insert(location)
     .then((locations) => {
       return getById(locations[0]);
+    });
+}
+
+function update(id, changes) {
+  return db("locations")
+    .where({ id })
+    .update(changes)
+    .then((rows) => {
+      return getById(id);
     });
 }
